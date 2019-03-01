@@ -1,0 +1,14 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  margin: 1%;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+.btn{
+  margin-top: 2%;
+  font-size: 15pt;
+}

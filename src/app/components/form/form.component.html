@@ -1,0 +1,57 @@
+<div class="example-container">
+  <h2>Personal Data</h2>
+  <mat-form-field>
+    <input matInput placeholder="Name" [formControl]="empty" required />
+    <mat-error *ngIf="empty.invalid">{{ getErrorMessageEmpty($empty) }}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+      <input matInput placeholder="Surname" [formControl]="emptySurname" required />
+      <mat-error *ngIf="emptySurname.invalid">{{ getErrorMessageEmpty($emptySurname) }}</mat-error>
+    </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Gender">
+      <mat-option value="option">Male</mat-option>
+      <mat-option value="option">Female</mat-option>
+      <mat-option value="option">Other</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="E-mail" [formControl]="email" required />
+    <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Phone Number" />
+  </mat-form-field>
+
+  <h2>Address</h2>
+  <mat-form-field>
+    <input matInput placeholder="Company" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Street" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Number" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="State" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="City" />
+  </mat-form-field>
+
+  <h2>Annotation</h2>
+  <mat-form-field appearance="outline">
+    <textarea matInput placeholder="Comments" rows="5"></textarea>
+  </mat-form-field>
+
+  <button class="btn" style="background-color: #caabea" mat-button>SAVE</button>
+</div>

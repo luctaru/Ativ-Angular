@@ -1,0 +1,45 @@
+.example-card{
+  height: 100%;
+  margin: 0;
+  padding-top: 0.5em;
+}
+
+.header{
+  justify-content: center;
+}
+
+.mat-display-2{
+  margin-bottom: 0.7em;
+}
+
+.text{
+  display:block;
+  align-items: center;
+  justify-content: center;
+}
+
+h2{
+  font-weight: normal;
+}
+
+.example-header-image {
+  height: 15em;
+  width: 15em;
+  background-image: url('https://trello-attachments.s3.amazonaws.com/5c59af35f317007fe99fe41d/300x300/6e705f3f6e67829783f04d8b55a26c52/lucas-tarumoto-01.jpg');
+  background-size: cover;
+}
+
+.content{
+  text-align: center;
+  align-content: center;
+  border-top: 1px solid #c1bdc1;
+  border-bottom: 1px solid #c1bdc1;
+  margin: 2% auto;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  max-width: 70%;
+}
+
+.btn{
+  font-size: 15pt;
+}

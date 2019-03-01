@@ -5,16 +5,36 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSidenavModule, MatToolbarModule, MatButtonModule, MatIconModule, MatListModule,
-   MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule, MatCheckboxModule } from '@angular/material';
+import {
+  MatSidenavModule,
+  MatToolbarModule,
+  MatButtonModule,
+  MatIconModule,
+  MatListModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatCheckboxModule,
+  MatCardModule,
+  MatSelectModule
+} from '@angular/material';
+
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { LayoutModule } from '@angular/cdk/layout';
 import { TableComponent } from './components/table/table.component';
+import { CardComponent } from './components/card/card.component';
+import { FormComponent } from './components/form/form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    TableComponent
+    TableComponent,
+    CardComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
@@ -31,9 +51,12 @@ import { TableComponent } from './components/table/table.component';
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatCardModule,
+    MatSelectModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
