@@ -7,7 +7,7 @@
 
   <mat-form-field>
       <input matInput placeholder="Surname" [formControl]="emptySurname" required />
-      <mat-error *ngIf="emptySurname.invalid">{{ getErrorMessageEmpty($emptySurname) }}</mat-error>
+      <mat-error *ngIf="emptySurname.hasError('required')">Digite um valor</mat-error>
     </mat-form-field>
 
   <mat-form-field>

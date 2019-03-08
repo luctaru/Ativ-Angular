@@ -9,9 +9,44 @@ table {
 }
 
 td, th {
-  width: 25%;
+  width: 20%;
+}
+
+.checkbox{
+  width: 10%;
 }
 
 .contact-name{
   cursor: pointer;
+  width: 10%;
+  transition: 0.5s;
+}
+
+.contact-name:hover{
+  background-color: gray;
+}
+
+.contact-email{
+  width: 30%;
+}
+
+.contact-comp{
+  width: 30%;
+}
+
+.delete{
+  width: 10%;
+}
+
+@media only screen and (max-width: 600px) {
+  .delete, .contact-comp, .contact-email{
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+  .contact-email{
+    display: none;
+  }
+
 }

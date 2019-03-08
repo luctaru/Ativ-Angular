@@ -18,6 +18,7 @@ export class FormComponent implements OnInit {
   }
 
   getErrorMessageEmpty() {
+    console.log('fjieiweo');
     if (this.empty.hasError('required')) {
       return 'You must enter a valid value';
     }

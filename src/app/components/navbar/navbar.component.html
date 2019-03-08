@@ -5,9 +5,9 @@
       [opened]="!(isHandset$ | async)">
     <mat-toolbar>Contacts:</mat-toolbar>
     <mat-nav-list>
-        <a mat-list-item routerLink="">Todos</a>
-        <a mat-list-item>Favoritos</a>
-        <a mat-list-item routerLink="add">Adicionar</a>
+        <a mat-list-item (click)="setLocalStorageFalse()" routerLink="">All</a>
+        <a mat-list-item (click)="setLocalStorageTrue()" routerLink="favorites">Favorites</a>
+        <a mat-list-item routerLink="add">Add</a>
       <!--a mat-list-item href="#" *ngFor="let link of links">{{ link }}</a-->
     </mat-nav-list>
   </mat-sidenav>

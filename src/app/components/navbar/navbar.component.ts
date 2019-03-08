@@ -28,4 +28,11 @@ export class NavbarComponent implements OnInit {
     this.links = this.navService.getLinks();
   }
 
+  setLocalStorageTrue() {
+    localStorage.setItem('bool', 'true');
+  }
+  setLocalStorageFalse() {
+    localStorage.setItem('bool', 'false');
+  }
+
 }
