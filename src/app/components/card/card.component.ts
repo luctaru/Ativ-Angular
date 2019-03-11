@@ -34,8 +34,9 @@ export class CardComponent implements OnInit, OnDestroy {
   img: string;
   sub: Subscription;
   aux: Contact;
+  // tab: TableComponent;
 
-  constructor(private route: ActivatedRoute, private service: AppService, private tab: TableComponent) { }
+  constructor(private route: ActivatedRoute, private service: AppService) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(

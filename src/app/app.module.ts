@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 import {
   MatSidenavModule,
   MatToolbarModule,
@@ -21,8 +22,6 @@ import {
   MatCardModule,
   MatSelectModule
 } from '@angular/material';
-
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { LayoutModule } from '@angular/cdk/layout';
 import { TableComponent } from './components/table/table.component';
