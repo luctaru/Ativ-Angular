@@ -1,24 +1,23 @@
-.example-card{
-  height: 100%;
+.example-card {
   margin: 0;
   padding-top: 0.5em;
 }
 
-.header{
+.header {
   justify-content: center;
 }
 
-.mat-display-2{
+.mat-display-2 {
   margin-bottom: 0.7em;
 }
 
-.text{
-  display:block;
+.text {
+  display: block;
   align-items: center;
   justify-content: center;
 }
 
-h2{
+h2 {
   font-weight: normal;
 }
 
@@ -29,7 +28,7 @@ h2{
   background-size: cover;
 }
 
-.content{
+.content {
   text-align: center;
   align-content: center;
   border-top: 1px solid #c1bdc1;
@@ -40,6 +39,29 @@ h2{
   max-width: 70%;
 }
 
-.btn{
+.btn {
   font-size: 15pt;
 }
+
+img{
+  width: 210px;
+  height: 210px;
+}
+
+@media only screen and (max-width: 600px) {
+  .header {
+    display: block;
+  }
+  .example-header-image {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    height: 12em;
+  }
+
+  img{
+    width: 10em;
+    height: 10em;
+  }
+}
+

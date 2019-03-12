@@ -1,6 +1,6 @@
-<mat-card class="mat-typography example-card">
+<mat-card id="card" class="mat-typography example-card">
   <mat-card-header class="header">
-      <div mat-card-avatar class="example-header-image"></div>
+      <div mat-card-avatar class="example-header-image"><img [src]="image"/></div>
     <div class="text">
       <p class="mat-display-2">{{aux?.firstName}} {{aux?.lastName}}</p>
       <p class="mat-headline" [innerText] = "aux?.gender === 'm' ? 'Male' : 'Female'"></p>
@@ -14,9 +14,9 @@
   </mat-card-content>
   <h1>Comments:</h1>
   <mat-card-content class="mat-headline">
-    <h2>
+
       {{aux?.info.comments}}
-    </h2>
+
   </mat-card-content>
   <mat-card-actions>
     <button class="btn" style="background-color: #72a8ff" mat-button routerLink="edit">EDIT</button>

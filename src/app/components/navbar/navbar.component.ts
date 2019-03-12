@@ -34,5 +34,4 @@ export class NavbarComponent implements OnInit {
   setLocalStorageFalse() {
     localStorage.setItem('bool', 'false');
   }
-
 }

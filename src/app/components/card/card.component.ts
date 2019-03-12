@@ -31,7 +31,7 @@ export interface Contact {
 export class CardComponent implements OnInit, OnDestroy {
 
   id: number;
-  img: string;
+  image: string;
   sub: Subscription;
   aux: Contact;
   // tab: TableComponent;
@@ -44,9 +44,10 @@ export class CardComponent implements OnInit, OnDestroy {
         this.id = params.id;
     });
 
-    this.service.getOne(this.id).subscribe(d => {this.aux = d; this.img = d.info.avatar; console.log(this.img); });
-
-    console.log(this.img);
+    this.service.getOne(this.id).subscribe(d => {
+      this.aux = d;
+      this.image = d.info.avatar;
+    });
   }
 
   ngOnDestroy() {
@@ -57,4 +58,5 @@ export class CardComponent implements OnInit, OnDestroy {
     this.service.delete(this.id).subscribe();
     // this.tab.render();
   }
+
 }

@@ -1,12 +1,14 @@
 <form class="example-container" [formGroup]="form" (ngSubmit)="onSubmit()">
   <h2>Personal Data</h2>
+  <img [src]="image" style="width: 15%; cursor: pointer" (click)="changeImg()"/>
+  <br/>
   <mat-form-field>
-    <input matInput placeholder="Name" formControlName="name" required />
+    <input matInput placeholder="Name" formControlName="firstName" required />
     <mat-error *ngIf="form.invalid">Invalid Field</mat-error>
   </mat-form-field>
 
   <mat-form-field>
-      <input matInput placeholder="Surname" formControlName="surname" required />
+      <input matInput placeholder="Surname" formControlName="lastName" required />
       <mat-error *ngIf="form.invalid">Invalid Field</mat-error>
     </mat-form-field>
 
@@ -23,40 +25,25 @@
     <mat-error *ngIf="form.invalid">Invalid Field</mat-error>
   </mat-form-field>
 
-  <mat-form-field>
+  <h2>Professional Data</h2>
+  <mat-form-field formGroupName="info">
     <input matInput placeholder="Phone Number" formControlName="phone"/>
     <mat-error *ngIf="form.invalid">Invalid Field</mat-error>
   </mat-form-field>
 
-  <h2>Address</h2>
-  <mat-form-field>
+  <mat-form-field formGroupName="info">
     <input matInput placeholder="Company" formControlName="company"/>
     <mat-error *ngIf="form.invalid">Invalid Field</mat-error>
   </mat-form-field>
 
-  <mat-form-field>
-    <input matInput placeholder="Street" formControlName="street"/>
-    <mat-error *ngIf="form.invalid">Invalid Field</mat-error>
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput placeholder="Number" formControlName="number"/>
-    <mat-error *ngIf="form.invalid">Invalid Field</mat-error>
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput placeholder="State" formControlName="state"/>
-    <mat-error *ngIf="form.invalid">Invalid Field</mat-error>
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput placeholder="City" formControlName="city"/>
+  <mat-form-field formGroupName="info">
+    <input matInput placeholder="Address" formControlName="address"/>
     <mat-error *ngIf="form.invalid">Invalid Field</mat-error>
   </mat-form-field>
 
   <h2>Annotation</h2>
-  <mat-form-field appearance="outline">
-    <textarea matInput placeholder="Comments" rows="5" formControlName="comment"></textarea>
+  <mat-form-field appearance="outline" formGroupName="info">
+    <textarea matInput placeholder="Comments" rows="5" formControlName="comments"></textarea>
   </mat-form-field>
 
   <button class="btn" type="submit" style="background-color: #caabea" mat-button>SAVE</button>

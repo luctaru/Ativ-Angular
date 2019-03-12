@@ -12,7 +12,7 @@ import { Contact } from '../../interfaces/contact';
 import { AppService } from 'src/app/services/app.service';
 import { Observable, Subject, empty, Subscription } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { renderComponent } from '@angular/core/src/render3';
 
 @Component({
@@ -40,28 +40,12 @@ export class TableComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private service: AppService) {
+  constructor(private service: AppService, private router: Router) {
     // Assign the data to the data source for the table to render
   }
 
   ngOnInit() {
     this.render();
-    // this.contacts$ = this.service.list()
-    // .pipe(
-    //   map((data) => {
-    //     console.log(data);
-    //     this.dataSource = new MatTableDataSource(data);
-    //     this.dataSource.paginator = this.paginator;
-    //     this.dataSource.sort = this.sort;
-    //     return data;
-    //   }),
-    //   catchError(error => {
-    //     // console.error(error);
-    //     this.error$.next(true);
-    //     return empty();
-    //   })
-    // );
-    // console.log(this.contacts$);
   }
 
   ngOnDestroy() {
@@ -122,19 +106,7 @@ export class TableComponent implements OnInit, OnDestroy {
       for (const d of this.dataSource.filteredData) {
         if (d.id === row.id) {
           // console.log(d);
-          const aux = {
-            firstName: d.firstName,
-            lastName: d.lastName,
-            email: d.email,
-            gender: d.gender,
-            isFavorite: false,
-            company: d.info.company,
-            avatar: d.info.avatar,
-            address: d.info.address,
-            phone: d.info.phone,
-            comments: d.info.comments
-          };
-          this.service.update(d, aux).subscribe();
+          this.service.update(d, false).subscribe();
         }
       }
       row.isFavorite = !row.isFavorite;
@@ -142,19 +114,7 @@ export class TableComponent implements OnInit, OnDestroy {
       e.target.src = 'http://localhost:4200/assets/star-icon.png';
       for (const d of this.dataSource.filteredData) {
         if (d.id === row.id) {
-          const aux = {
-            firstName: d.firstName,
-            lastName: d.lastName,
-            email: d.email,
-            gender: d.gender,
-            isFavorite: true,
-            company: d.info.company,
-            avatar: d.info.avatar,
-            address: d.info.address,
-            phone: d.info.phone,
-            comments: d.info.comments
-          };
-          this.service.update(d, aux).subscribe();
+          this.service.update(d, true).subscribe();
         }
       }
       row.isFavorite = !row.isFavorite;
@@ -163,6 +123,6 @@ export class TableComponent implements OnInit, OnDestroy {
 
   public redirectToDelete = (id: string) => {
     this.service.delete(id).subscribe();
-    this.render();
+    this.router.navigate(['']);
   }
 }
