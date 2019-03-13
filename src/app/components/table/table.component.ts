@@ -6,7 +6,7 @@ import {
   Renderer,
   OnDestroy
 } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Contact } from '../../interfaces/contact';
 import { AppService } from 'src/app/services/app.service';
@@ -14,6 +14,8 @@ import { Observable, Subject, empty, Subscription } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { renderComponent } from '@angular/core/src/render3';
+import { DialogService } from 'src/app/services/dialog.service';
+import { listenOnPlayer } from '@angular/animations/browser/src/render/shared';
 
 @Component({
   selector: 'app-table',
@@ -36,19 +38,36 @@ export class TableComponent implements OnInit, OnDestroy {
   ];
   dataSource: MatTableDataSource<Contact>;
   selection = new SelectionModel<Contact>(true, []);
+  array: Array<number> = [];
+  subscription: Subscription;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private service: AppService, private router: Router) {
+  constructor(
+    private service: AppService,
+    private router: Router,
+    private dialog: MatDialog,
+    private dialogService: DialogService
+    ) {
     // Assign the data to the data source for the table to render
   }
 
   ngOnInit() {
     this.render();
+    this.listen();
   }
 
   ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  listen() {
+    this.subscription = this.dialogService.emitt.subscribe(() => {
+      this.render();
+    });
   }
 
   render() {
@@ -89,9 +108,17 @@ export class TableComponent implements OnInit, OnDestroy {
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
-    this.isAllSelected()
-      ? this.selection.clear()
-      : this.dataSource.data.forEach(row => this.selection.select(row));
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      this.dataSource.data.forEach(row => {
+        this.array.pop();
+      });
+    } else {
+      this.dataSource.data.forEach(row => {
+        this.selection.select(row);
+        this.array.push(row.id);
+      });
+    }
   }
 
   starChange(e: any, row) {
@@ -121,8 +148,29 @@ export class TableComponent implements OnInit, OnDestroy {
     }
   }
 
-  public redirectToDelete = (id: string) => {
-    this.service.delete(id).subscribe();
-    this.router.navigate(['']);
+  redirectToDelete = (id: string) => {
+    this.dialogService.delDialog(this.dialog, id);
+  }
+
+  arrayRemove(arr, value) {
+    return arr.filter((ele) => {
+        return ele != value;
+    });
+ }
+
+  changeArr(e: any, row) {
+    if (e.checked) {
+      this.array.push(row.id);
+    } else {
+      this.array = this.arrayRemove(this.array, row.id);
+    }
+  }
+
+  delSelected() {
+    if (this.array.length > 0) {
+        this.dialogService.delSelectedDialog(this.dialog, this.array);
+    } else {
+      alert('No contacts selected');
+    }
   }
 }

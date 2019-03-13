@@ -1,6 +1,8 @@
 <mat-card id="card" class="mat-typography example-card">
   <mat-card-header class="header">
-      <div mat-card-avatar class="example-header-image"><img [src]="image"/></div>
+      <div mat-card-avatar class="example-header-image">
+        <img [src]="image == null || image == '' ? 'http://localhost:4200/assets/cont-icon.png' : image"/>
+      </div>
     <div class="text">
       <p class="mat-display-2">{{aux?.firstName}} {{aux?.lastName}}</p>
       <p class="mat-headline" [innerText] = "aux?.gender === 'm' ? 'Male' : 'Female'"></p>
@@ -20,6 +22,6 @@
   </mat-card-content>
   <mat-card-actions>
     <button class="btn" style="background-color: #72a8ff" mat-button routerLink="edit">EDIT</button>
-    <button class="btn" style="background-color: #ff3030" mat-button (click)="delContact()" routerLink="">DELETE</button>
+    <button class="btn" style="background-color: #ff3030" mat-button (click)="delContact()">DELETE</button>
   </mat-card-actions>
 </mat-card>

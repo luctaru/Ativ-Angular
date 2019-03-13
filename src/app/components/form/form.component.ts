@@ -1,25 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, Validators, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
 import { AppService } from 'src/app/services/app.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material';
+import { DialogService } from 'src/app/services/dialog.service';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, OnDestroy {
 
   sub: Subscription;
   id: number;
   form: FormGroup;
   image: string;
+  sub2: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private service: AppService,
-    private router: Router
+    private router: Router,
+    private dialogService: DialogService,
+    private dialog: MatDialog
     ) {
     this.form = this.formBuilder.group({
       id: [null],
@@ -49,6 +54,12 @@ export class FormComponent implements OnInit {
           this.image = 'http://localhost:4200/assets/avatar-icon.png';
         }
     });
+    this.eventRedirect();
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+    this.sub2.unsubscribe();
   }
 
   changeImg() {
@@ -67,22 +78,17 @@ export class FormComponent implements OnInit {
 
   onSubmit() {
       if (this.form.valid) {
-        if (this.id) {
-          console.log('id on');
-          this.service.update(this.form.value, this.form.get('isFavorite').value).subscribe();
-          this.router.navigate(['']);
-        } else {
-          console.log('id off');
-          this.form.get('isFavorite').setValue(false);
-          this.service.insert(this.form.value).subscribe();
-          this.router.navigate(['']);
-        }
+          this.dialogService.editDialog(this.dialog, this.form.value, this.id);
       } else {
         Object.keys(this.form.controls).forEach(field => {
           const control = this.form.get(field);
           control.markAsDirty();
         });
       }
+  }
+
+  eventRedirect() {
+    this.sub2 = this.dialogService.emitt.subscribe(() => this.router.navigate(['']));
   }
 
   resetField() {

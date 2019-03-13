@@ -20,13 +20,15 @@ import {
   MatInputModule,
   MatCheckboxModule,
   MatCardModule,
-  MatSelectModule
+  MatSelectModule,
+  MatDialogModule
 } from '@angular/material';
 
 import { LayoutModule } from '@angular/cdk/layout';
 import { TableComponent } from './components/table/table.component';
 import { CardComponent } from './components/card/card.component';
 import { FormComponent } from './components/form/form.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { FormComponent } from './components/form/form.component';
     NavbarComponent,
     TableComponent,
     CardComponent,
-    FormComponent
+    FormComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,11 @@ import { FormComponent } from './components/form/form.component';
     MatSelectModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
+  ],
+  entryComponents: [
+    DialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
